@@ -1,100 +1,0 @@
-
-\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
-\setlength\parindent{0pt}
-\usepackage[margin=1.0in]{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for for rotated page geometry
-\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}				%\ se pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
-\usepackage{amssymb}
-\usepackage{scrextend}
-
-
-\title{\textbf{Placing your Program Under License}}
-\author{Tyler Esser and Lorraine Hwang, UC Davis}
-%\date{}							% Activate to display a given date or no date
-\begin{document}
-\maketitle
-%\section{}
-%\subsection{}
-
-
-
-
-For proper code licensing, it is recommended that the following be inserted near the beginning of each source file:
- \begin{itemize}
-  \item Copyright Notice
-  \item Statement of Copying Permission or License
-\end{itemize}
-
-The code repository should also contain a copy of the license in a file named COPYING \textit{(recommended)} or LICENSE.
-
-For more information see https://www.gnu.org/licenses/gpl-howto.en.html
-
-\section{Using header\_helper.py}header\_helper.py inserts or replaces  header text from a file into a file or list of files.  Text is inserted at the top of the file only.  When using comment tokens, make sure to only list files for which the tokens are correct. 
-
-To see this  list of arguments:\begin{addmargin}[3em]{2em}
-{\fontfamily{pcr}\selectfont 
-header\_helper.py $-$$-$help
-}
-\end{addmargin}
-
-\begin{addmargin}[5em]{2em}
-{\fontfamily{pcr}\selectfont  [-h] [-d $|$ -r N $|$ -o $|$ -i]  \newline [-n $|$ -l SYMBOL $|$ -b START-SYMBOL END-SYMBOL]  \newline [-f]  \newline header-file file [file ...]  
-}\end{addmargin}
-\textbf{Positional arguments:}
-\begin{addmargin}[5em]{2em}
-{\fontfamily{pcr}\selectfont header-file }   
-	\begin{addmargin}[5em]{2em}
-	Path to header text file. Reads from stdin.
-	 \end{addmargin}
- \end{addmargin}
- \begin{addmargin}[5em]{2em}
-{\fontfamily{pcr}\selectfont File}	 
-	\begin{addmargin}[5em]{2em}
-	Files to be modified by adding the header.  Be sure not mix file types if using the code comment formatting. 
-	\end{addmargin}
-\end{addmargin}
-\textbf{Optional arguments:}
-\begin{addmargin}[5em]{2em}-h\space\space\space\space\space\space	$-$$-$help            
-        \begin{addmargin}[5em]{2em}
-         Show this help message and exit.
-         \end{addmargin}-f \space\space\space\space\space\space 	$-$$-$force-block-comment
-         \begin{addmargin}[5em]{2em}	Ignore warning when formatting a block comment about the header text containing an END-SYMBOL.
-	\end{addmargin}
-\end{addmargin}
-\textbf{Header replacement:}\newlineChoose if a header should replace lines at the top of each file. Defaults to no line removal.\begin{addmargin}[5em]{2em} -d \space\space\space\space\space\space  $-$$-$no-removal     	\begin{addmargin}[5em]{2em}
-	Default. Don't remove any lines when adding the header.
-	\end{addmargin} -r N \space\space\space $-$$-$replace-lines N
-	\begin{addmargin}[5em]{2em}	Remove the first N lines in each file when adding the header.
-	\end{addmargin}-o\space\space\space\space\space\space 	$-$$-$overwrite       	\begin{addmargin}[5em]{2em}
-	Remove an amount of lines equal to the amount of lines in the provided header.
-	\end{addmargin}-i\space\space\space\space\space\space 	$-$$-$interactive     	\begin{addmargin}[5em]{2em}
-	For each file, display the first few lines and ask how many lines should be removed when adding the header.
-	\end{addmargin}
-\end{addmargin}
-
-\textbf{Code comment formatting:}\newlineProvides very basic support for formatting a header as either single line comments or a block comment. Defaults to no comment symbols specified.\begin{addmargin}[5em]{2em} -n\space\space\space\space\space\space 	$-$$-$no-commenting   
-	\begin{addmargin}[5em]{2em}	Default. Insert the header as is. This choice is for headers that are already formatted for insertion into the provided files.
-	\end{addmargin} -l  SYMBOL\space\space\space$-$$-$line-comments SYMBOL	\begin{addmargin}[5em]{2em}
-	Insert the header as a series of single line comments. SYMBOL is the string token used to start a single line comment.
-	\end{addmargin}  -b START-SYMBOL END-SYMBOL	 \begin{addmargin}[3em]{2em}$-$$-$block-comment START-SYMBOL END-SYMBOL \end{addmargin}	 \begin{addmargin}[5em]{2em}
-	Insert the header as a single block comment. START- SYMBOL is the string token used to start a block comment. END-SYMBOL is the token used to end a block comment.
-	\end{addmargin}
-\end{addmargin}
-
-\section{Examples}Example files can be found in project directory along with copies of open source licenses commonly used by codes hosted by CIG.
-\textbf{Example 1}\newlineReplace the first line (line 1) with text from the file {\fontfamily{pcr}\selectfont Fake\_License.txt} into the c++ program {\fontfamily{pcr}\selectfont helloworld.cpp}. 
-
-Run:
-\begin{addmargin}[5em]{2em}{\fontfamily{pcr}\selectfont python header\_helper.py $-$$-$line-comments \textquotedblright//\textquotedblright  \space $ \backslash$ \begin{addmargin}[2em]{2em}$-$$-$replace-lines 1 Fake\_License.txt helloworld.cpp \end{addmargin}
-} 
-\end{addmargin}
-
-\textbf{Example 2: }\newline
-Example header txt for GPL2 from ASPECT.
-{\fontfamily{pcr}\selectfontCopyright (C) 2011 - 2015 by the authors of the ASPECT code.This file is part of ASPECT.ASPECT is free software; you can redistribute it and/or modify\newlineit under the terms of the GNU General Public License as published by\newlinethe Free Software Foundation; either version 2, or (at your option)\newlineany later version.ASPECT is distributed in the hope that it will be useful,\newlinebut WITHOUT ANY WARRANTY; without even the implied warranty of\newlineMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\newlineGNU General Public License for more details.You should have received a copy of the GNU General Public License\newlinealong with ASPECT; see the file doc/COPYING.  If not see\newline<http://www.gnu.org/licenses/>.
-}
-
-\end{document}  
